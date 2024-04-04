@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_flutter/global_varaible.dart';
+import 'package:shop_app_flutter/product_cards.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           // Heading
           const Row(children: [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 "Shoes\nCollection",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
@@ -70,7 +72,9 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8.0),
                         backgroundColor: selectedFilter == filter
-                            ? Theme.of(context).colorScheme.primary // gettting it from seed's primary color using inheritance
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary // gettting it from seed's primary color using inheritance
                             : const Color.fromRGBO(245, 247, 249, 1),
                         side: const BorderSide(
                           color: Color.fromRGBO(245, 247, 249, 1),
@@ -85,6 +89,23 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
+          ),
+
+          // Products
+          Expanded(
+            child: ListView.builder(
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return ProductCard(
+                    title: product['title'] as String,
+                    price: product['price'] as double,
+                    image: product['imageUrl'] as String,
+                    backgroundColor: index.isEven
+                        ? const Color.fromRGBO(216, 240, 253, 1)
+                        : const Color.fromRGBO(245, 247, 249, 1),
+                  );
+                }),
           )
         ],
       ),
