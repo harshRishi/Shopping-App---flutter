@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     const border = OutlineInputBorder(
       borderSide: BorderSide(color: Color.fromRGBO(225, 225, 225, 1)),
-      borderRadius: BorderRadius.horizontal(left: Radius.elliptical(20, 20)),
+      borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
     );
 
     return Scaffold(
