@@ -16,7 +16,7 @@ class CartPage extends StatelessWidget {
           final cartItem = cart[index];
           return ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(cartItem['imageUrl'] as String),
+              backgroundImage: AssetImage(cartItem['imageUrl'] as String), // you can use NetworkImage in case Image from some URL
               radius: 30,
               // backgroundColor: Colo,
             ),
