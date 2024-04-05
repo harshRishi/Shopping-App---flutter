@@ -31,15 +31,15 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           // Heading
-          const Row(children: [
+          Row(children: [
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 "Shoes\nCollection",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-            Expanded(
+            const Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Search",

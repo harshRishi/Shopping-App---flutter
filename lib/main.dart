@@ -16,6 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           fontFamily: 'Lato',
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+            titleTextStyle: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
           inputDecorationTheme: const InputDecorationTheme(
             hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
@@ -25,6 +32,10 @@ class MyApp extends StatelessWidget {
             primary: const Color.fromRGBO(254, 206, 1, 1),
           ),
           textTheme: const TextTheme(
+            titleLarge: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
             titleMedium: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
