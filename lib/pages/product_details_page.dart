@@ -41,11 +41,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         },
       ),
     );
-          ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Product added successfully!"),
-        ),
-      );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Product added successfully!"),
+      ),
+    );
   }
 
   @override
@@ -68,7 +68,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Image.asset(widget.product['imageUrl'] as String),
+            child: Image.asset(
+              widget.product['imageUrl'] as String,
+              height: 250,
+            ),
           ),
           const Spacer(
             flex: 1,

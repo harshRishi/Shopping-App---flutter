@@ -90,34 +90,64 @@ class _ProductsListState extends State<ProductsList> {
             ),
           ),
 
-          // Products
           Expanded(
-            child: ListView.builder(
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  final product = products[index];
-                  return GestureDetector(
-                    onTap: () {
-                      // Works similar to router in next
-                      Navigator.of(context).push(
-                        // Here MaterialPageRoute is use for android transition from one route to another
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return ProductDetailsPage(product: products[index]);
-                          },
+            // get the size of screen
+            child: (MediaQuery.sizeOf(context).width) > 650
+                ? GridView.builder(
+                    itemCount: products.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.4,
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(
+                                    product: products[index]);
+                              },
+                            ),
+                          );
+                        },
+                        child: ProductCard(
+                          title: product['title'] as String,
+                          price: product['price'] as double,
+                          image: product['imageUrl'] as String,
+                          backgroundColor: index.isEven
+                              ? const Color.fromRGBO(216, 240, 253, 1)
+                              : const Color.fromRGBO(245, 247, 249, 1),
                         ),
                       );
-                    },
-                    child: ProductCard(
-                      title: product['title'] as String,
-                      price: product['price'] as double,
-                      image: product['imageUrl'] as String,
-                      backgroundColor: index.isEven
-                          ? const Color.fromRGBO(216, 240, 253, 1)
-                          : const Color.fromRGBO(245, 247, 249, 1),
-                    ),
-                  );
-                }),
+                    })
+                : ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(
+                                    product: products[index]);
+                              },
+                            ),
+                          );
+                        },
+                        child: ProductCard(
+                          title: product['title'] as String,
+                          price: product['price'] as double,
+                          image: product['imageUrl'] as String,
+                          backgroundColor: index.isEven
+                              ? const Color.fromRGBO(216, 240, 253, 1)
+                              : const Color.fromRGBO(245, 247, 249, 1),
+                        ),
+                      );
+                    }),
           ),
         ],
       ),
