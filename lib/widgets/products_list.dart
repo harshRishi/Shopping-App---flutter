@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app_flutter/global_varaible.dart';
-import 'package:shop_app_flutter/product_cards.dart';
-import 'package:shop_app_flutter/product_details_page.dart';
+import 'package:shop_app_flutter/widgets/product_cards.dart';
+import 'package:shop_app_flutter/pages/product_details_page.dart';
 
 class ProductsList extends StatefulWidget {
   const ProductsList({super.key});

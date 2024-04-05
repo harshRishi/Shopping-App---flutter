@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:shop_app_flutter/global_varaible.dart';
 import 'package:shop_app_flutter/providers/cart_provider.dart';
 
 class CartPage extends StatelessWidget {
