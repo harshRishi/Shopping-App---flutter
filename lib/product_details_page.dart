@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app_flutter/cart_page.dart';
+import 'package:shop_app_flutter/providers/cart_provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String, Object> product;
@@ -13,6 +16,37 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int selectedSize = 0;
+
+  // _ProductDetailsPageState extends State which provides us the Context
+  void onTab() {
+    if (selectedSize == 0) {
+      // To show alter from bottom
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please select your shoe size"),
+        ),
+      );
+      return;
+    }
+    // don't listen to the changes in CartProvider
+    final prod = {...widget.product};
+    prod.remove('sizes');
+    prod['size'] = selectedSize;
+    Provider.of<CartProvider>(context, listen: false).addProduct(prod);
+    Navigator.of(context).push(
+      // Here MaterialPageRoute is use for android transition from one route to another
+      MaterialPageRoute(
+        builder: (context) {
+          return const CartPage();
+        },
+      ),
+    );
+          ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Product added successfully!"),
+        ),
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,14 +122,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: onTab,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: const Size(double.infinity, 50),
                       ),
-                      child: const Text(
-                        "Add to cart",
-                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.shopping_cart_checkout,
+                              color: Colors.black),
+                          SizedBox(width: 10),
+                          Text(
+                            "Add to cart",
+                            style: TextStyle(color: Colors.black, fontSize: 18),
+                          ),
+                        ],
                       ),
                     ),
                   )
