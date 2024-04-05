@@ -10,7 +10,7 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // final cart = Provider.of<CartProvider>(context).cart; // can only be defined inside the BuildContext
     // ------ OR use short hand -------------
-    final cart = context.watch<CartProvider>().cart;
+    final cart = context.watch<CartProvider>().cart; // this will rebuild each widget, to avoid this use Consumer
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cart"),
